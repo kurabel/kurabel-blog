@@ -1,5 +1,6 @@
 <template>
   <section class="index">
+    <h2 class="category">{{ label }}</h2>
     <div
       class="item"
       v-for="(item, index) in items" :key="index">
@@ -8,9 +9,7 @@
             <h1>{{ item.fields.name }}</h1>
          </nuxt-link>
            <b>{{ item.fields.price | priceFormat }}</b>
-          <nuxt-link :to="{ name: 'category', params: { category: item.fields.category }}">
           <span class="category" v-if="item.fields.category">{{ item.fields.category }}</span>
-          </nuxt-link>
           <span v-for="(tag, index) in item.fields.tags" :key="index">
             <span class="tag" v-if="tag">{{ tag }}</span>
           </span>
@@ -25,9 +24,13 @@ export default {
   asyncData({ params }) {
     return client.getEntries({
       'content_type' : 'item',
+      'fields.category[in]': params.category,
       order: '-sys.createdAt'
     }).then(entries => {
-        return { items: entries.items };
+        return {
+          items: entries.items,
+          label: params.category
+        };
       })
       .catch(console.error);
   },
@@ -42,6 +45,7 @@ export default {
 <style>
 img {
   width: 100%;
+  text-align: center
 }
 
 .item {
