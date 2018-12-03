@@ -1,6 +1,6 @@
 <template>
   <section class="index">
-    <h2 class="category">{{ label }}</h2>
+    <h2 class="category">{{ getCategoryLabel(categoryId) }}</h2>
     <div
       class="item"
       v-for="(item, index) in items" :key="index">
@@ -9,27 +9,33 @@
             <h1>{{ item.fields.name }}</h1>
          </nuxt-link>
            <b>{{ item.fields.price | priceFormat }}</b>
-          <span class="category" v-if="item.fields.category">{{ item.fields.category }}</span>
+          <nuxt-link :to="{ name: 'category-categoryId', params: { categoryId: item.fields.category }}">
+          <span class="category" v-if="item.fields.category">{{ getCategoryLabel(item.fields.category) }}</span>
+          </nuxt-link>
           <span v-for="(tag, index) in item.fields.tags" :key="index">
-            <span class="tag" v-if="tag">{{ tag }}</span>
+            <nuxt-link :to="{ name: 'tag-tagId', params: { tagId: tag }}">
+              <span class="tag" v-if="tag">{{ getTagLabel(tag) }}</span>
+            </nuxt-link>
           </span>
-    </div>
+        </div>
   </section>
 </template>
 
 <script>
+import { CATEGORY } from '~/constants/category';
+import { TAG } from '~/constants/tag';
 import client from '~/plugins/contentful';
 
 export default {
   asyncData({ params }) {
     return client.getEntries({
       'content_type' : 'item',
-      'fields.category[in]': params.category,
+      'fields.category[match]': params.categoryId,
       order: '-sys.createdAt'
     }).then(entries => {
         return {
           items: entries.items,
-          label: params.category
+          categoryId: params.categoryId
         };
       })
       .catch(console.error);
@@ -38,7 +44,21 @@ export default {
     priceFormat: function (value) {
       return '￥' + value.toLocaleString() ;
     }
-  }  
+  },
+  methods: {
+    getTagLabel(tagId) {
+      const tag = TAG.find(
+        tag => tag.id === tagId
+      )
+      return tag.label;
+    },
+    getCategoryLabel(categoryId) {
+      const category = CATEGORY.find(
+        category => category.id === categoryId
+      )
+      return category.label;
+    }
+  }
 };
 </script>
 
@@ -71,7 +91,7 @@ h1 {
 }
 
 .tag {
-  background-color: yellow;
+  background-color: #ddd;
   padding: 10px;
   border-radius: 5px;
   margin: 5px;

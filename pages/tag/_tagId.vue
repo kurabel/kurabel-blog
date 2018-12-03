@@ -1,5 +1,6 @@
 <template>
   <section class="index">
+    <h2 class="tag">{{ getTagLabel(tagId) }}</h2>
     <div
       class="item"
       v-for="(item, index) in items" :key="index">
@@ -29,15 +30,19 @@ export default {
   asyncData({ params }) {
     return client.getEntries({
       'content_type' : 'item',
+      'fields.tags[in]': params.tagId,
       order: '-sys.createdAt'
     }).then(entries => {
-        return { items: entries.items }
+        return {
+          items: entries.items,
+          tagId: params.tagId
+        };
       })
-      .catch(console.error)
+      .catch(console.error);
   },
   filters: {
     priceFormat: function (value) {
-      return '￥' + value.toLocaleString()
+      return '￥' + value.toLocaleString() ;
     }
   },
   methods: {
@@ -45,13 +50,13 @@ export default {
       const tag = TAG.find(
         tag => tag.id === tagId
       )
-      return tag.label
+      return tag.label;
     },
     getCategoryLabel(categoryId) {
       const category = CATEGORY.find(
         category => category.id === categoryId
       )
-      return category.label
+      return category.label;
     }
   }
 };
@@ -60,6 +65,7 @@ export default {
 <style>
 img {
   width: 100%;
+  text-align: center
 }
 
 .item {
