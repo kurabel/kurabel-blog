@@ -1,6 +1,6 @@
 /**
  * 価格フォーマット
  */
-export function priceFormat (value) {
-    return '￥' + value.toLocaleString() ;
-}
+// export function priceFormat (value) {
+//     return '￥' + value.toLocaleString() ;
+// }

@@ -36,7 +36,7 @@ export default {
       .catch(console.error)
   },
   filters: {
-    priceFormat: function (value) {
+    priceFormat(value) {
       return '￥' + value.toLocaleString()
     }
   },

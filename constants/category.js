@@ -1,10 +1,14 @@
 export const CATEGORY = [
     {
-        id: 'GAME',
+        id: 'game',
         label: 'ゲーム',
     },
     {
-        id: 'PC',
+        id: 'pc',
         label: 'パソコン',
+    },
+    {
+        id: 'beauty',
+        label: '美容',
     }
 ]

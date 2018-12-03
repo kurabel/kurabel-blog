@@ -1,10 +1,10 @@
 export const TAG = [
     {
-        id: 'REC',
+        id: 'reccomend',
         label: 'おすすめ',
     },
     {
-        id: 'XMAS',
+        id: 'xmas',
         label: 'クリスマス特集',
     } 
 ]
