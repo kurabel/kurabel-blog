@@ -1,6 +1,6 @@
 export const TAG = [
     {
-        id: 'reccomend',
+        id: 'recommend',
         label: 'おすすめ',
     },
     {

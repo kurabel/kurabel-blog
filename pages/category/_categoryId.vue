@@ -1,5 +1,8 @@
 <template>
   <section class="index">
+    <div>
+      <nuxt-link :to="{ name: 'index'}">ホーム</nuxt-link> ＞ {{ getCategoryLabel(categoryId) }}
+    </div>
     <h2 class="category">{{ getCategoryLabel(categoryId) }}</h2>
     <div
       class="item"
@@ -9,6 +12,7 @@
             <h1>{{ item.fields.name }}</h1>
          </nuxt-link>
            <b>{{ item.fields.price | priceFormat }}</b>
+           <div>
           <nuxt-link :to="{ name: 'category-categoryId', params: { categoryId: item.fields.category }}">
           <span class="category" v-if="item.fields.category">{{ getCategoryLabel(item.fields.category) }}</span>
           </nuxt-link>
@@ -17,6 +21,7 @@
               <span class="tag" v-if="tag">{{ getTagLabel(tag) }}</span>
             </nuxt-link>
           </span>
+           </div>
         </div>
   </section>
 </template>
@@ -42,7 +47,7 @@ export default {
   },
   filters: {
     priceFormat: function (value) {
-      return '￥' + value.toLocaleString() ;
+      return '¥' + value.toLocaleString() ;
     }
   },
   methods: {
@@ -61,43 +66,3 @@ export default {
   }
 };
 </script>
-
-<style>
-img {
-  width: 100%;
-  text-align: center
-}
-
-.item {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding: 20px;
-}
-
-.item > a {
-  text-decoration: none;
-  color: #555;
-}
-
-h1 {
-  font-size: 2em;  
-}
-
-.category {
-  background-color: #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 5px;
-}
-
-.tag {
-  background-color: #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 5px;
-}
-
-b {
-  font-size: 1.5em;
-}
-</style>

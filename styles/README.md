@@ -1,0 +1,29 @@
+- configs ... 設定
+    - _config.sass
+    - _functions.sass
+    - _mixin.sass
+- foundations　... リセットや基本属性
+    - _base.sass
+    - _reset.sass
+- layouts　... グリッドなどの配置
+    - _container.sass
+- objects　... オブジェクト全体
+    - components　複合オブジェクト
+        - _pager.sass
+    - modules　汎用オブジェクト
+        - _btn.sass
+        - _icon.sass
+        - _heading.sass
+        - _table.sass
+        - _list.sass
+    - packages　ユニークオブジェクト
+        - _footer.sass
+        - _header.sass
+- pages　... 特定ページ
+    - _about.sass
+    - _top.sass
+- utilities ... わずかなスタイル調整
+    - _margin.sass
+    - _text.sass
+- vendors　... ライブラリ管理
+    - bulma.sass
