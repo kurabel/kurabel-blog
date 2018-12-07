@@ -17,17 +17,13 @@ export default {
     ItemFilter, ItemList
   },
   asyncData( {store} ) {
-    store.dispatch('callApi',{
-      contentType : 'item',
+    return client.getEntries({
+      'content_type' : 'item',
       order: '-sys.createdAt'
+    }).then(entries => {
+      return { items: entries.items }
     })
-    // return client.getEntries({
-    //   'content_type' : 'item',
-    //   order: '-sys.createdAt'
-    // }).then(entries => {
-    //   return { items: entries.items }
-    // })
-    // .catch(console.error)
+    .catch(console.error)
   },
 };
 </script>
