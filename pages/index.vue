@@ -8,8 +8,6 @@
 <script>
 import ItemFilter from '~/components/Organisms/ItemFilter'
 import ItemList from '~/components/Organisms/ItemList'
-import { CATEGORY } from '~/constants/category'
-import { TAG } from '~/constants/tag'
 import client from '~/plugins/contentful'
 
 export default {

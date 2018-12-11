@@ -1,6 +1,3 @@
-require('dotenv').config()
-// const client = require('./plugins/contentful')
-
 module.exports = {
   /*
   ** Headers of the page
@@ -45,5 +42,5 @@ module.exports = {
     { src: '~/plugins/contentful' },
     { src: '~/plugins/filters' }    
   ],
-  modules: ['@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/dotenv']
 }
