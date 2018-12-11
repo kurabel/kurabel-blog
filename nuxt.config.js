@@ -1,5 +1,5 @@
 require('dotenv').config()
-const client = require('./plugins/contentful')
+// const client = require('./plugins/contentful')
 
 module.exports = {
   /*
@@ -16,6 +16,9 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  css: [
+    '@/assets/styles/main.sass'
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -38,6 +41,9 @@ module.exports = {
       }
     }
   },
-  plugins: ['~/plugins/contentful'],
+  plugins: [
+    { src: '~/plugins/contentful' },
+    { src: '~/plugins/filters' }    
+  ],
   modules: ['@nuxtjs/dotenv'],
 }

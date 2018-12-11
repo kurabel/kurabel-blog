@@ -21,8 +21,7 @@
 </template>
 
 <script>
-import { CATEGORY } from '~/constants/category'
-import { TAG } from '~/constants/tag'
+import labelManager from '~/plugins/labelManager'
 
 export default {
 	name: 'ItemList',
@@ -35,32 +34,6 @@ export default {
         required: true,
     }
   },
-  computed: {
-    constCategories() {
-      return CATEGORY
-    },
-    constTags() {
-      return TAG
-    }
-  },
-  methods: {
-    getTagLabel(tagId) {
-      const tag = TAG.find(
-        tag => tag.id === tagId
-      )
-      return tag.label
-    },
-    getCategoryLabel(categoryId) {
-      const category = CATEGORY.find(
-        category => category.id === categoryId
-      )
-      return category.label
-		},
-	},
-  filters: {
-    priceFormat(value) {
-      return '¥' + value.toLocaleString()
-    }
-  },
+  mixins: [labelManager],
 }
 </script>
