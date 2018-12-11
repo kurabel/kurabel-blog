@@ -41,8 +41,7 @@
 </template>
 
 <script>
-import { CATEGORY } from "~/constants/category";
-import { TAG } from "~/constants/tag";
+import labelManager from '~/plugins/labelManager'
 import client from "~/plugins/contentful";
 import ItemList from "~/components/Organisms/ItemList";
 
@@ -68,6 +67,7 @@ export default {
   components: {
     ItemList
   },
+  mixins: [labelManager],
   asyncData({ params }) {
     return client
       .getEntries({
@@ -75,7 +75,6 @@ export default {
         "fields.id": params.id
       })
       .then(entries => {
-        console.log(entries.items[0]);
         return {
           itemId: entries.items[0].fields.id,
           item: entries.items[0],
@@ -95,22 +94,9 @@ export default {
       .catch(console.error);
   },
   created() {
-    this.getRelatedItems();
-  },
-  filters: {
-    priceFormat: function(value) {
-      return "¥" + value.toLocaleString();
-    }
+    // this.getRelatedItems();
   },
   methods: {
-    getTagLabel(tagId) {
-      const tag = TAG.find(tag => tag.id === tagId);
-      return tag.label;
-    },
-    getCategoryLabel(categoryId) {
-      const category = CATEGORY.find(category => category.id === categoryId);
-      return category.label;
-    },
     /**
      * 関連商品の取得
      */
