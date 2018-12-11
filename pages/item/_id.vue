@@ -93,8 +93,8 @@ export default {
       })
       .catch(console.error);
   },
-  created() {
-    // this.getRelatedItems();
+  mounted() {
+    this.getRelatedItems();
   },
   methods: {
     /**

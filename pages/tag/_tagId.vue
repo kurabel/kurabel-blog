@@ -10,8 +10,7 @@
 </template>
 
 <script>
-import { CATEGORY } from "~/constants/category";
-import { TAG } from "~/constants/tag";
+import labelManager from '~/plugins/labelManager'
 import client from "~/plugins/contentful";
 import ItemList from "~/components/Organisms/ItemList";
 
@@ -34,20 +33,6 @@ export default {
   components: {
     ItemList
   },
-  filters: {
-    priceFormat: function(value) {
-      return "¥" + value.toLocaleString();
-    }
-  },
-  methods: {
-    getTagLabel(tagId) {
-      const tag = TAG.find(tag => tag.id === tagId);
-      return tag.label;
-    },
-    getCategoryLabel(categoryId) {
-      const category = CATEGORY.find(category => category.id === categoryId);
-      return category.label;
-    }
-  }
+  mixins: [labelManager],
 };
 </script>
