@@ -68,10 +68,10 @@ export default {
     ItemList
   },
   mixins: [labelManager],
-  asyncData({ params }) {
+  asyncData({ env, params }) {
     return client
       .getEntries({
-        content_type: "item",
+        content_type: env.CONTENT_TYPE,
         "fields.id": params.id
       })
       .then(entries => {

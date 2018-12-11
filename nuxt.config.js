@@ -44,5 +44,8 @@ module.exports = {
     { src: '~/plugins/contentful' },
     { src: '~/plugins/filters' }    
   ],
-  modules: ['@nuxtjs/dotenv']
+  modules: ['@nuxtjs/dotenv'],
+  env: {
+    CONTENT_TYPE: 'item'
+  }
 }

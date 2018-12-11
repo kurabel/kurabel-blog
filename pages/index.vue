@@ -14,10 +14,9 @@ export default {
   components: {
     ItemFilter, ItemList
   },
-  asyncData() {
-    console.log(client)
+  asyncData( env ) {
     return client.getEntries({
-      'content_type' : 'item',
+      'content_type' : env.CONTENT_TYPE,
       order: '-sys.createdAt'
     }).then(entries => {
       return { items: entries.items }

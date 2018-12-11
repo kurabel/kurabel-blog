@@ -15,10 +15,10 @@ import client from "~/plugins/contentful";
 import ItemList from "~/components/Organisms/ItemList";
 
 export default {
-  asyncData({ params }) {
+  asyncData({ env, params }) {
     return client
       .getEntries({
-        content_type: "item",
+        content_type: env.CONTENT_TYPE,
         "fields.tags[in]": params.tagId,
         order: "-sys.createdAt"
       })
