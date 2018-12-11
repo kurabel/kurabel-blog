@@ -14,7 +14,8 @@ export default {
   components: {
     ItemFilter, ItemList
   },
-  asyncData( {store} ) {
+  asyncData() {
+    console.log(client)
     return client.getEntries({
       'content_type' : 'item',
       order: '-sys.createdAt'
